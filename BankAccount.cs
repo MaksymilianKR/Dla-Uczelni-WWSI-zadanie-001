@@ -36,28 +36,24 @@ namespace Lab1_Task.ConsoleApp
 
         public bool Withdraw(decimal amount)
         {
-            // Sprawdzamy, czy konto jest aktywne
             if (!_isActive)
             {
                 Console.WriteLine($"Nie można wypłacić pieniędzy — konto {_accountNumber} jest zamknięte.");
                 return false;
             }
 
-            // Sprawdzamy, czy kwota jest dodatnia
             if (amount <= 0)
             {
                 Console.WriteLine("Kwota wypłaty musi być dodatnia.");
                 return false;
             }
 
-            // Blokujemy wypłatę większą niż saldo
             if (amount > _balance)
             {
                 Console.WriteLine("Brak wystarczających środków na koncie.");
                 return false; // saldo nie zmienia się
             }
 
-            // Wypłata jest poprawna – odejmujemy od salda
             _balance -= amount;
             Console.WriteLine($"Wypłacono {amount} {_currency} z konta {_accountNumber}.");
             return true;
